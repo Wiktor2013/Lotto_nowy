@@ -1,4 +1,5 @@
 """sciagnanie danych ze strony lotto"""
+import pandas as pd
 import json
 from fake_useragent import UserAgent
 import requests
@@ -8,9 +9,10 @@ header = {'User-Agent':str(ua.chrome)}
 url = 'https://www.lotto.pl/api/lotteries/draw-results/by-gametype?game=Lotto&index=1&size=6625&sort=drawDate&order=DESC'
 response = requests.get(url, headers=header)
 #print(response.content)
-#data = json.loads(response.content)
-data = json.loads(response.content)["items"]
-
+data = json.loads(response.content)
+with open("/home/sanczo/PycharmProjects/Lotto_nowy/by-gametype.json", "w") as f:
+    json.dump(data, f)
+f.close()
 # def flatten_json(y):
 #     out = {}
 #     def flatten(x, name=''):
@@ -26,6 +28,8 @@ data = json.loads(response.content)["items"]
 #             out[name[:-1]] = x
 #     flatten(y)
 #     return out
+#
+# wyniki = flatten_json(data)
+#print(data)
+#df = pd.read_json('wyniki')
 
-with open("/home/sanczo/PycharmProjects/Lotto_nowy/by-gametype.json", "w") as f:
-    json.dump(data, f)
