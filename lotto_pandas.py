@@ -14,9 +14,10 @@ import json
 #print(response.content)
 
 with open("by-gametype.json") as my_file:
-    print(my_file.read())
-    data = json.loads(my_file)
+    data = my_file.read()
+    data = json.load(my_file)
     data = data["items"]
+
 
 
 def flatten_json(y):
@@ -50,7 +51,7 @@ f.close()
 df = pd.read_json('/home/PycharmProjects/Lotto_nowy/by-gametype-flat.json', typ='frame', convert_dates=True, orient='index')
 # df = pd.DataFrame('/home/sanczo/PycharmProjects/Lotto_nowy/by-gametype-flat.json')
 
-print(df)
-print(type(df))
+#print(df)
+#print(type(df))
 
 
